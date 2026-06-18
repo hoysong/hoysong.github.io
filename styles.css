@@ -1,0 +1,15 @@
+h1 {
+    color:rgb(100, 100, 255)
+}
+
+.project_name {
+    padding: 5px;
+    margin: 30px;
+    background-color: rgb(80, 80, 210);
+    color: white;
+}
+
+.rotate_proj_name {
+    transform-origin: left bottom;
+    transform: rotate(-10deg) translateY(50%) translateX(-30px);
+}
