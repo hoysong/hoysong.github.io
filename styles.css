@@ -12,11 +12,11 @@ h1 {
   color: rgb(66, 98, 167);
   font-size: 2em;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  border-bottom: 1px solid #375e97;
+  border-bottom: 1px solid rgb(66, 98, 167);
 }
 
 h2 {
-  border-bottom: 1px solid #375e97;
+  border-bottom: 1px solid rgb(66, 98, 167);
 }
 
 body {
@@ -52,7 +52,7 @@ strong {
 .project_card {
 	/*border: 3px solid #375e97;*/
 	background: rgb(250, 250, 250);
-	border: solid #375e97;
+	border: solid rgb(66, 98, 167);
 	border-radius: 10px;
 	margin: 10px;
 }
