@@ -2,61 +2,119 @@
 <html lang="ko-KR">
 	<head>
 		<meta charset="utf-8" />
-		<title>Hoysong GitHub io</title>
+		<title>Hoysong GitHub.io</title>
 		<link rel="stylesheet" href="styles.css" />
 	</head>
 	<body>
-
 		<article>
 			<h1>My Projects</h1>
-			<!-- new project -->
-			 <h2><a class="project_name" href="https://github.com/hoysong/inception">Inception</a></h2>
-			 <p>
-				<em>"Docker와 Docker Compose를 활용하여 다중 컨테이너 어플리케이션을 제작하는 프로젝트"</em>
-				<br /><em><strong>Skills: </strong>Docker, Docker Compose, Shell scripting</span></em>
-			 </p>
-			 <ul>
-				<li>NGINX, WordPress + PHP-FPM, MariaDB를 각각 하나의 컨테이너로 구성</li>
-				<li>각 Dockerfile은 Debian Bookworm-slim 버전을 베이스 이미지로 지정</li>
-				<li>Docker Nerworks로 컨테이너간 통신을 할 수 있도록 구성</li>
-				<li>Docker Volumes로 호스트측 볼륨을 컨테이너로 마운트하여 데이터 영속성 보장</li>
-			</ul>
+			<nav>
+				<strong>Selected category: </strong>
+				<button class="category_button" data-category="all">All</button>
+				<button class="category_button" data-category="c">C</button>
+				<button class="category_button" data-category="cpp">C++</button>
+				<button class="category_button" data-category="docker">Docker</button>
+				<button class="category_button" data-category="shell">Shell</button>
+				<button class="category_button" data-category="tcp">TCP/IP</button>
+				<button class="category_button" data-category="graphics">Graphics</button>
+				<button class="category_button" data-category="git">Git</button>
+				<button class="category_button" data-category="system">System administration</button>
+				<button class="category_button" data-category="thread">Multi-Threading</button>
+			</nav>
 
-			<!-- new project -->
-			 <h2><a class="project_name" href="https://github.com/hoysong/ft_irc">ft_irc</a></h2>
-			 <p>
-				<em>"RFC 1459/2812를 따르는 IRC서버를 구현하는 프로젝트"</em>
-				<br /><em><strong>Skills: </strong>C++, TCP/IP, Debugging, Git</span></em>
-			 </p>
-			 <ul>
-				<li>irssi 클라이언트 구현체와 통신이 가능한 IRC서버를 구현</li>
-				<li>inspIRCd, tcpflow, irssi로 테스트 환경을 구성하여 기존 서버-클라이언트간 응답을 참고하여 구현</li>
-				<li>C++ 연습 이후 첫 프로젝트로 클래스간 책임분산 등을 생각해볼 수 있었음</li>
-			 </ul>
+			<p>Hint: Click project name</p>
 
-			<!-- new project -->
-			 <h2><a class="project_name" href="https://github.com/hoysong/minishell">Minishell</a></h2>
-			 <p>
-				<em>"제한된 기능의 Bash를 구현하는 프로젝트"</em>
-				<br /><em><strong>Skills: </strong>C, Shell scripting, Debugging, Git</span></em>
-			</p>
-			 <ul>
-				<li>Tokenizer를 담당하여 구현부가 토큰을 사용할 수 있도록 인터페이스/라이브러리를 구현해 팀 개발속도 가속화.</li>
-				<li>Valgrind, AddressSanitizer, GDB/LLDB를 활용해 메모리 오류와 크래시를 추적하여 수정.</li>
-				<li>원본 Bash와 출력을 side-by-side 비교하는 테스트 스크립트를 C로 작성해 보았음</li>
-			</ul>
+			<!-- Project -->
+			<article class="project_card" data-category="shell,docker,system">
+				<h2><a class="project_name" href="https://google.com">Inception</a></h2>
+				<p class="project_simple_explain"><em>"Docker, Docker Compose를 활용하여 다중 컨테이너 애플리케이션을 만드는 프로젝트"</em></p>
+					<ul>
+						<li>Nginx, WordPress + PHP-FPM, MariaDB는 각각 하나의 Dockerfile을 가집니다.</li>
+						<li>모든 Dockerfile의 베이스 이미지는 Debian Bookworm-slim 버전으로 작성되었습니다.</li>
+						<li>Docker Networks를 통해 컨테이너 간 통신을 할 수 있도록 하였습니다.</li>
+						<li>Docker Volumes를 사용하여 데이터의 영속성을 보장하였습니다.</li>
+					</ul>
+			</article>
 
-			<!-- new project -->
-			 <h2><a class="project_name" href="https://github.com/hoysong/cub3d">Cub3d</a></h2>
-			 <p>
-				<em>"울펜슈타인 스타일 레이캐스팅 엔진 구현 그래픽 프로젝트"</em>
-				<br /><em><strong>Skills: </strong>C, Computer graphics, Shell scripting, Debugging, Git</span></em>
-			</p>
-			 <ul>
-				<li>Painter's algorithm을 사용하여 독보적인 렌더링 파이프라인 구성</li>
-				<li>맵의 유효성/메모리체크를 위해 100여개의 맵 파일들을 테스트하는 쉘 스크립트를 작성하였음</li>
-			</ul>
+			<!-- Project -->
+			<article class="project_card" data-category="cpp,tcp,git">
+				<h2><a class="project_name" href="hoysong.github.io">ft_irc</a></h2>
+				<p class="project_simple_explain"><em>"RFC 1459/2812를 따르는 소켓 프로그래밍 IRC 서버를 만드는 프로젝트"</em></p>
+					<ul>
+						<li>서버는 이미 존재하는 irssi 클라이언트 구현체와 호환되어야 합니다.</li>
+						<li>inspIRCd, TCPflow, irssi를 통해 테스트 환경을 구성하여 서버/클라이언트 간 응답을 확인하며 구현하였습니다.</li>
+						<li>C++로 구현한 첫 프로젝트로 클래스 간 책임 분산을 생각하며 구현하였습니다.</li>
+					</ul>
+			</article>
+
+			<!-- Project -->
+			<article class="project_card" data-category="c,graphics,git">
+				<h2><a class="project_name" href="hoysong.github.io">FdF</a></h2>
+				<p class="project_simple_explain"><em>"와이어프레임 풍경을 3D로 표현하는 프로젝트"</em></p>
+					<ul>
+						<li>점의 색상, 좌표, 높이가 명시된 '.fdf'확장자 파일을 읽어 3D로 시각화</li>
+						<li>각 점을 잇는 선분은 시작점의 색을 시작으로 끝점의 색으로 그라디언트</li>
+					</ul>
+			</article>
+
+			<!-- Project -->
+			<article class="project_card" data-category="c,graphics,shell,git">
+				<h2><a class="project_name" href="hoysong.github.io">Cub3d</a></h2>
+				<p class="project_simple_explain"><em>"울펜슈타인 스타일 레이캐스팅 엔진 구현 프로젝트"</em></p>
+					<ul>
+						<li>2차원 상의 맵을 3D처럼 보이게 하는 엔진 구현을 목표로 합니다.</li>
+						<li>2차원 공간에서 DDA 알고리즘을 활용하여 플레이어와 벽 간의 거리를 구하고, 이를 3D로 렌더링합니다.</li>
+						<li>화가 알고리즘을 활용하여 독보적인 레이캐스팅 엔진을 구현하였습니다.</li>
+						<li>맵의 유효성과 메모리 안정성을 검증하기 위해 100개가 넘는 맵 파일을 테스트하는 쉘 스크립트를 작성하였습니다.</li>
+					</ul>
+			</article>
+
+			<!-- Project -->
+			<article class="project_card" data-category="c,git,thread">
+				<h2><a class="project_name" href="hoysong.github.io">Philosophers</a></h2>
+				<p class="project_simple_explain"><em>"스레드, 뮤텍스를 이해하기 위한 dining philosophers problem 프로젝트"</em></p>
+					<ul>
+						<li>스레드 생성, 뮤텍스 Lock/Unlock 등을 통해 스레드 자원 관리..</li>
+						<li>임계영역, 데이터레이스, 데드락 등의 문제를 직접 체감하며 멀티스레딩을 학습.</li>
+					</ul>
+			</article>
+
+			<!-- Project -->
+			<article class="project_card" data-category="c,shell,git">
+				<h2><a class="project_name" href="hoysong.github.io">Minishell</a></h2>
+				<p class="project_simple_explain"><em>"제한된 기능의 Bash 구현 프로젝트"</em></p>
+					<ul>
+						<li>readline()을 통해 받는 사용자 입력을 엄격하게 파싱하여 토큰 단위로 정재.</li>
+						<li>팀원이 토큰을 신뢰할 수 있도록 토큰을 출력하는 디버그모드 제공.</li>
+						<li>fork(), wait()등을 활용해 자식프로세스를 생성, 좀비/고아 프로세스가 발생하지 않도록 관리. </li>
+						<li>pipe()를 활용해 명령어 간 입력과 출력을 연결하는 파이프라인을 구현.</li>
+					</ul>
+			</article>
+
+			<!-- Project -->
+			<article class="project_card" data-category="c,git,thread">
+				<h2><a class="project_name" href="hoysong.github.io">MT Game of Life</a></h2>
+				<p class="project_simple_explain"><em>"멀티스레딩 Game of Life를 통해 프레임 속도 변화 측정 프로젝트"</em></p>
+					<ul>
+						<li>"Conway's Game of Life" 규칙을 시각적으로 볼 수 있도록 구현.</li>
+						<li>구현 이후 렌더링 파이프라인 구간별로 멀티스레딩을 적용하여 프레임 처리속도 측정.</li>
+						<li>120프레임 기준 멀티스레딩 적용 후 55%의 프레임 처리속도 향상을 확인하였음.</li>
+						<li>Philosopher의 멀티스레딩 경험과 FdF/Cub3d의 그래픽 경험을 살려서 시작한 프로젝트.</li>
+					</ul>
+			</article>
+
+			<!-- Project -->
+			<article class="project_card" data-category="shell,git,system">
+				<h2><a class="project_name" href="hoysong.github.io">Born2beroot</a></h2>
+				<p class="project_simple_explain"><em>"가상머신 내에서 각종 정책들을 준수하는 데비안 환경을 구축하는 프로젝트"</em></p>
+					<ul>
+						<li>비밀번호/유저명/그룹/UFW/SSH 접속 등 여러 정책을 준수하는 환경을 구축.</li>
+						<li>cron 데몬에 스크립트를 사용하여 가상머신의 자원 모니터링.</li>
+						<li>모든 과정은 CLI로 진행.</li>
+					</ul>
+			</article>
+
 		</article>
-
+		<script src="category.js"></script>
 	</body>
 </html>
