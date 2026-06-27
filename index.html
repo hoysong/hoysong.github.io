@@ -10,7 +10,7 @@
 		<article>
 			<h1>My Projects</h1>
 			<nav>
-				<strong>Selected category: </strong>
+				<strong>Selected category:</strong>
 				<button class="category_button" data-category="all">All</button>
 				<button class="category_button" data-category="c">C</button>
 				<button class="category_button" data-category="cpp">C++</button>
@@ -23,7 +23,7 @@
 				<button class="category_button" data-category="thread">Multi-Threading</button>
 			</nav>
 
-			<p>Hint: Click project name</p>
+			<p>Hint: Click the project name</p>
 
 			<!-- Project -->
 			<article class="project_card" data-category="shell,docker,system">
@@ -53,8 +53,8 @@
 				<h2><a class="project_name" href="https://github.com/hoysong/fdf_fil_de_fer">FdF</a></h2>
 				<p class="project_simple_explain"><em>"와이어프레임 풍경을 3D로 표현하는 프로젝트"</em></p>
 					<ul>
-						<li>점의 색상, 좌표, 높이가 명시된 '.fdf'확장자 파일을 읽어 3D로 시각화</li>
-						<li>각 점을 잇는 선분은 시작점의 색을 시작으로 끝점의 색으로 그라디언트</li>
+						<li>점의 색상, 좌표, 높이가 명시된 '.fdf' 확장자 파일을 읽어 3D로 시각화합니다.</li>
+						<li>각 점을 잇는 선분은 시작점의 색을 시작으로 끝점의 색으로 그라디언트합니다.</li>
 					</ul>
 			</article>
 
@@ -65,7 +65,7 @@
 					<ul>
 						<li>2차원 상의 맵을 3D처럼 보이게 하는 엔진 구현을 목표로 합니다.</li>
 						<li>2차원 공간에서 DDA 알고리즘을 활용하여 플레이어와 벽 간의 거리를 구하고, 이를 3D로 렌더링합니다.</li>
-						<li>화가 알고리즘을 활용하여 독보적인 레이캐스팅 엔진을 구현하였습니다.</li>
+						<li>페인팅 알고리즘을 활용하여 독보적인 레이캐스팅 엔진을 구현하였습니다.</li>
 						<li>맵의 유효성과 메모리 안정성을 검증하기 위해 100개가 넘는 맵 파일을 테스트하는 쉘 스크립트를 작성하였습니다.</li>
 					</ul>
 			</article>
@@ -75,8 +75,8 @@
 				<h2><a class="project_name" href="https://github.com/hoysong/philo">Philosophers</a></h2>
 				<p class="project_simple_explain"><em>"스레드, 뮤텍스를 이해하기 위한 dining philosophers problem 프로젝트"</em></p>
 					<ul>
-						<li>스레드 생성, 뮤텍스 Lock/Unlock 등을 통해 스레드 자원 관리..</li>
-						<li>임계영역, 데이터레이스, 데드락 등의 문제를 직접 체감하며 멀티스레딩을 학습.</li>
+						<li>스레드 생성, 뮤텍스 Lock/Unlock 등을 통해 스레드 자원 관리를 학습했습니다.</li>
+						<li>임계 영역, 데이터 레이스, 데드락 등의 문제를 직접 체감하며 멀티스레딩을 학습했습니다.</li>
 					</ul>
 			</article>
 
@@ -85,10 +85,10 @@
 				<h2><a class="project_name" href="https://github.com/hoysong/minishell">Minishell</a></h2>
 				<p class="project_simple_explain"><em>"제한된 기능의 Bash 구현 프로젝트"</em></p>
 					<ul>
-						<li>readline()을 통해 받는 사용자 입력을 엄격하게 파싱하여 토큰 단위로 정재.</li>
-						<li>팀원이 토큰을 신뢰할 수 있도록 토큰을 출력하는 디버그모드 제공.</li>
-						<li>fork(), wait()등을 활용해 자식프로세스를 생성, 좀비/고아 프로세스가 발생하지 않도록 관리. </li>
-						<li>pipe()를 활용해 명령어 간 입력과 출력을 연결하는 파이프라인을 구현.</li>
+						<li>readline()을 통해 받는 사용자 입력을 엄격하게 파싱하여 토큰 단위로 정제했습니다.</li>
+						<li>팀원이 토큰을 신뢰할 수 있도록 토큰을 출력하는 디버그 모드를 제공했습니다.</li>
+						<li>fork(), wait() 등을 활용해 자식 프로세스를 생성하고, 좀비/고아 프로세스가 발생하지 않도록 관리했습니다.</li>
+						<li>pipe()를 활용해 명령어 간 입력과 출력을 연결하는 파이프라인을 구현했습니다.</li>
 					</ul>
 			</article>
 
@@ -97,21 +97,21 @@
 				<h2><a class="project_name" href="https://github.com/hoysong/game_of_life">MT Game of Life</a></h2>
 				<p class="project_simple_explain"><em>"멀티스레딩 Game of Life를 통해 프레임 속도 변화 측정 프로젝트"</em></p>
 					<ul>
-						<li>Philosopher의 멀티스레딩 경험과 FdF/Cub3d의 그래픽 경험을 활용한 프로젝트.</li>
-						<li>42의 MLX라이브러리를 통해 "Conway's Game of Life" 규칙을 시각적으로 볼 수 있도록 구현.</li>
-						<li>구현 이후 렌더링 파이프라인 구간별로 멀티스레딩을 적용하여 프레임 처리속도 측정.</li>
-						<li>120프레임 기준 멀티스레딩 적용 후 55%의 프레임 처리속도 향상을 확인하였음.</li>
+						<li>Philosopher의 멀티스레딩 경험과 FdF/Cub3d의 그래픽 경험을 활용한 프로젝트입니다.</li>
+						<li>42의 MLX 라이브러리를 통해 "Conway's Game of Life" 규칙을 시각적으로 볼 수 있도록 구현했습니다.</li>
+						<li>구현 이후 렌더링 파이프라인 구간별로 멀티스레딩을 적용해 프레임 처리 속도를 측정했습니다.</li>
+						<li>120프레임 기준 멀티스레딩 적용 후 55%의 프레임 처리 속도 향상을 확인했습니다.</li>
 					</ul>
 			</article>
 
 			<!-- Project -->
 			<article class="project_card" data-category="shell,system">
-				<h2><a class="project_name" href="hoysong.github.io">Born2beroot</a></h2>
+				<h2><a class="project_name" href="https://github.com/hoysong/born2beroot">Born2beroot</a></h2>
 				<p class="project_simple_explain"><em>"가상머신 내에서 각종 정책들을 준수하는 데비안 환경을 구축하는 프로젝트"</em></p>
 					<ul>
-						<li>비밀번호/유저명/그룹/UFW/SSH 접속 등 여러 정책을 준수하는 환경을 구축.</li>
-						<li>cron 데몬에 스크립트를 사용하여 가상머신의 자원 모니터링.</li>
-						<li>모든 과정은 CLI로 진행.</li>
+						<li>비밀번호, 유저명, 그룹, UFW, SSH 접속 등 여러 정책을 준수하는 환경을 구축했습니다.</li>
+						<li>cron 데몬에 스크립트를 사용하여 가상머신의 자원 모니터링을 수행했습니다.</li>
+						<li>모든 과정은 CLI로 진행했습니다.</li>
 					</ul>
 			</article>
 
