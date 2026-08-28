@@ -14,6 +14,7 @@
 				<button class="category_button" data-category="all">All</button>
 				<button class="category_button" data-category="c">C</button>
 				<button class="category_button" data-category="cpp">C++</button>
+				<button class="category_button" data-category="qt">Qt</button>
 				<button class="category_button" data-category="docker">Docker</button>
 				<button class="category_button" data-category="shell">Shell</button>
 				<button class="category_button" data-category="tcp">TCP/IP</button>
@@ -45,6 +46,20 @@
 						<li>서버는 이미 존재하는 irssi 클라이언트 구현체와 호환되어야 합니다.</li>
 						<li>inspIRCd, TCPflow, irssi를 통해 테스트 환경을 구성하여 서버/클라이언트 간 응답을 확인하며 구현하였습니다.</li>
 						<li>C++로 구현한 첫 프로젝트로 클래스 간 책임 분산을 생각하며 구현하였습니다.</li>
+					</ul>
+			</article>
+
+			<!-- Project -->
+			<article class="project_card" data-category="cpp,qt,tcp,git">
+				<h2><a class="project_name" href="https://github.com/hoysong/GUI-Client-for-ft_irc">IRC GUI Client — Qt Widgets</a></h2>
+				<p class="project_simple_explain"><em>"Qt Widgets의 UI 구성과 Signal/Slot 기반 이벤트 처리를 학습하기 위해 구현한 IRC GUI 클라이언트"</em></p>
+				<img class="project_preview" src="https://raw.githubusercontent.com/hoysong/GUI-Client-for-ft_irc/main/video.gif" alt="IRC GUI Client 실행 화면" width="640" height="480" />
+					<ul>
+						<li>Qt Designer를 활용해 서버 접속 정보, 연결 상태, 송신 메시지와 수신 메시지를 확인할 수 있는 GUI를 구성했습니다.</li>
+						<li>버튼 클릭, Enter 입력, 서버 연결 및 메시지 수신 등의 동작을 Qt의 Signal/Slot 구조로 연결했습니다.</li>
+						<li>QTcpSocket을 사용해 IRC 서버와 비동기 TCP 통신을 구현하고, 연결 성공, 메시지 수신, 소켓 오류 이벤트를 처리했습니다.</li>
+						<li>연결 성공 시 PASS, NICK, USER 명령을 자동으로 전송하고, 직접 입력한 IRC 명령에는 CRLF를 추가해 전송합니다.</li>
+						<li>화면을 담당하는 MainWindow와 네트워크 통신을 담당하는 IRCGuiControlClient로 책임을 분리했습니다.</li>
 					</ul>
 			</article>
 
