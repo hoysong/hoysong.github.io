@@ -18,6 +18,31 @@ function putLog () {
 
 }
 
+function getCategoryCount(category) {
+    if (category === "all") {
+        return projectCards.length;
+    }
+
+    let count = 0;
+    for (let i = 0; i < projectCards.length; i++) {
+        const categories = projectCards[i].dataset.category.split(",");
+        if (categories.includes(category)) {
+            count++;
+        }
+    }
+    return count;
+}
+
+function addCategoryCounts() {
+    for (let i = 0; i < categoryButtons.length; i++) {
+        const countBadge = document.createElement("span");
+        countBadge.classList.add("category_count");
+        countBadge.textContent = getCategoryCount(categoryButtons[i].dataset.category);
+        countBadge.setAttribute("aria-label", "projects");
+        categoryButtons[i].appendChild(countBadge);
+    }
+}
+
 function hide_or_show(card, category) {
     const splits = card.dataset.category.split(",");
     if (category === "all" || splits.includes(category) === true) {
@@ -51,6 +76,8 @@ function handleButtonClick(event) {
 }
 
 /*init*/
+addCategoryCounts();
+
 for (let i = 0; i < categoryButtons.length; i++) {
     categoryButtons[i].addEventListener("click", handleButtonClick);
     if (categoryButtons[i].dataset.category == "all") {
