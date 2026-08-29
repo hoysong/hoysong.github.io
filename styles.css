@@ -42,6 +42,24 @@ strong {
 	cursor: pointer;
 }
 
+.category_count {
+	display: inline-block;
+	min-width: 1.25em;
+	margin-left: 6px;
+	padding: 1px 5px;
+	border-radius: 999px;
+	color: white;
+	background-color: #375e97;
+	font-size: 0.8em;
+	line-height: 1.25;
+	text-align: center;
+}
+
+.category_button.active .category_count {
+	color: #375e97;
+	background-color: white;
+}
+
 .active {
 	color: white;
 	font-weight: bold;
