@@ -34,7 +34,7 @@
 						<li>Nginx, WordPress + PHP-FPM, MariaDB 이미지를 Debian Bookworm-slim 기반 Dockerfile로 각각 구성했습니다.</li>
 						<li>브리지 네트워크로 컨테이너를 연결하고, Healthcheck와 depends_on으로 서비스 시작 순서를 관리했습니다.</li>
 						<li>비밀번호는 Docker Secrets로, 일반 설정은 환경 변수로 분리했습니다.</li>
-						<li>WordPress와 MariaDB 데이터는 호스트 디렉터리에 연결한 볼륨으로 영속화했습니다.</li>
+						<li>Docker named volume을 <code>driver_opts</code>의 bind 방식으로 호스트 디렉터리에 연결해 WordPress와 MariaDB 데이터를 영속화했습니다.</li>
 					</ul>
 			</article>
 
@@ -43,10 +43,11 @@
 				<h2><a class="project_name" href="https://github.com/hoysong/ft_irc">ft_irc</a></h2>
 				<p class="project_simple_explain"><em>"C++98과 Linux epoll로 다중 클라이언트를 처리하는 IRC 서버"</em></p>
 					<ul>
-						<li>RFC 1459/2812의 일부 명령을 구현해 사용자 등록, 채널 관리, 개인·채널 메시지와 운영자 기능을 지원합니다.</li>
+						<li>RFC 1459/2812의 일부 명령을 구현해 사용자 등록, 채널 관리, 개인·채널 메시지와 운영자 기능을 지원하고, 과제의 기준 클라이언트인 irssi와 호환되도록 검증했습니다.</li>
 						<li>fork 없이 단일 epoll 이벤트 루프로 IPv4 TCP 연결과 여러 클라이언트의 입출력을 처리합니다.</li>
 						<li>클라이언트별 수신 버퍼에서 CRLF 단위 메시지를 추출해 분할 수신과 연속 수신을 처리했습니다.</li>
-						<li>명령 디스패치와 클라이언트·채널·소켓 책임을 분리하고, irssi와 netcat으로 동작을 검증했습니다.</li>
+						<li>명령 디스패치와 클라이언트·채널·소켓 클래스로 책임을 분리했습니다.</li>
+						<li>netcat으로 원시 IRC 명령을 테스트하고, tcpflow로 서버·클라이언트 사이의 TCP 스트림을 확인했습니다.</li>
 					</ul>
 			</article>
 
@@ -82,6 +83,7 @@
 					<ul>
 						<li><code>.cub</code> 파일에서 방향별 벽 텍스처, 바닥·천장 RGB 값과 맵을 읽고 형식·폐쇄 여부·플레이어 수를 검증합니다.</li>
 						<li>시야각에 따라 광선을 전진시켜 벽 충돌을 찾고, 거리와 각도를 화면 좌표로 변환해 원근감과 방향별 텍스처를 표현했습니다.</li>
+						<li>화면 열마다 가장 가까운 벽을 즉시 그리는 일반적인 Cub3D 구현과 달리, 벽 구간을 깊이순으로 정렬해 먼 벽부터 그리는 화가 알고리즘을 적용했습니다.</li>
 						<li>키보드·마우스 이동과 회전, 플레이어 위치와 시야를 보여 주는 미니맵을 구현했습니다.</li>
 						<li>정상·비정상 맵 케이스와 쉘 스크립트·Valgrind를 이용해 파서 오류와 메모리 문제를 점검했습니다.</li>
 					</ul>
@@ -104,10 +106,12 @@
 				<p class="project_simple_explain"><em>"Bash의 파싱과 명령 실행 구조를 구현한 2인 팀 프로젝트"</em></p>
 				<img class="project_preview" src="https://raw.githubusercontent.com/hoysong/minishell/master/video.gif" alt="Minishell 명령어 실행 화면" width="640" height="480" />
 					<ul>
-						<li>2인 팀에서 파서를 담당해 작은따옴표·큰따옴표를 고려한 토큰화와 문법 검사를 구현했습니다.</li>
-						<li>환경 변수와 직전 종료 상태를 확장하고, 파이프·리다이렉션을 명령 단위 데이터로 분리했습니다.</li>
-						<li>실행부가 파싱 결과를 일관되게 사용할 수 있도록 명령·인자·리다이렉션 인터페이스를 구성했습니다.</li>
+						<li>2인 팀에서 파서를 주로 담당하고 실행부 일부도 구현했습니다.</li>
+						<li>작은따옴표·큰따옴표를 고려해 입력을 토큰화하고, 환경 변수와 직전 종료 상태 확장 및 문법 검사를 구현했습니다.</li>
+						<li>파이프·리다이렉션을 명령 단위 데이터로 분리하고, 실행부가 사용할 명령·인자·리다이렉션 인터페이스를 구성했습니다.</li>
 						<li>파싱 노드와 문법 검사 결과를 출력하는 디버그 모드와 코드 주석으로 팀원의 연동 작업을 지원했습니다.</li>
+						<li><code>fork()</code>, <code>pipe()</code>, <code>dup2()</code>로 파이프라인의 자식 프로세스와 입출력을 구성했습니다.</li>
+						<li><code>waitpid()</code>로 종료 상태를 회수하고, 실행 파일 경로를 탐색해 <code>execve()</code>로 외부 프로그램을 실행했습니다.</li>
 					</ul>
 			</article>
 
@@ -119,8 +123,8 @@
 					<ul>
 						<li>C와 MiniLibX로 Conway's Game of Life 규칙, 랜덤·파일 기반 초기 맵과 실시간 셀 편집을 구현했습니다.</li>
 						<li>화면을 8개 행 구간으로 나누고 배경, 격자, 셀 렌더링 단계를 pthread 작업으로 병렬화했습니다.</li>
-						<li>각 렌더링 단계 사이에 pthread_join을 적용해 단계별 작업 순서를 보장했습니다.</li>
-						<li>120프레임 처리 시간이 1,528ms에서 684ms로 줄어, 기준 구현 대비 처리 시간 55.2% 감소를 기록했습니다.</li>
+						<li>각 스레드가 겹치지 않는 이미지 청크를 담당하게 해 렌더링 구간의 뮤텍스 없이 작업하고, 단계 사이에는 <code>pthread_join()</code>으로 실행 순서를 보장했습니다.</li>
+						<li>274×142 맵을 1918×994 화면에 120프레임 렌더링하는 조건에서 처리 시간을 1,528ms에서 684ms로 줄여 55.24% 감소시켰습니다.</li>
 					</ul>
 			</article>
 
