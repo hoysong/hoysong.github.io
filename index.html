@@ -24,107 +24,109 @@
 				<button class="category_button" data-category="thread">Multi-Threading</button>
 			</nav>
 
-			<p>Hint: Click the project name</p>
+			<p>공개 저장소가 있는 프로젝트는 이름을 클릭하면 GitHub에서 코드를 확인할 수 있습니다.</p>
 
 			<!-- Project -->
 			<article class="project_card" data-category="shell,docker,system">
 				<h2><a class="project_name" href="https://github.com/hoysong/inception">Inception</a></h2>
-				<p class="project_simple_explain"><em>"Docker, Docker Compose를 활용하여 다중 컨테이너 애플리케이션을 만드는 프로젝트"</em></p>
+				<p class="project_simple_explain"><em>"Docker Compose로 Nginx·WordPress·MariaDB 웹 인프라를 구성한 프로젝트"</em></p>
 					<ul>
-						<li>Nginx, WordPress + PHP-FPM, MariaDB는 각각 하나의 Dockerfile을 가집니다.</li>
-						<li>모든 Dockerfile의 베이스 이미지는 Debian Bookworm-slim 버전으로 작성되었습니다.</li>
-						<li>Docker Networks를 통해 컨테이너 간 통신을 할 수 있도록 하였습니다.</li>
-						<li>Docker Volumes를 사용하여 데이터의 영속성을 보장하였습니다.</li>
+						<li>Nginx, WordPress + PHP-FPM, MariaDB 이미지를 Debian Bookworm-slim 기반 Dockerfile로 각각 구성했습니다.</li>
+						<li>브리지 네트워크로 컨테이너를 연결하고, Healthcheck와 depends_on으로 서비스 시작 순서를 관리했습니다.</li>
+						<li>비밀번호는 Docker Secrets로, 일반 설정은 환경 변수로 분리했습니다.</li>
+						<li>WordPress와 MariaDB 데이터는 호스트 디렉터리에 연결한 볼륨으로 영속화했습니다.</li>
 					</ul>
 			</article>
 
 			<!-- Project -->
 			<article class="project_card" data-category="cpp,tcp,git">
 				<h2><a class="project_name" href="https://github.com/hoysong/ft_irc">ft_irc</a></h2>
-				<p class="project_simple_explain"><em>"RFC 1459/2812를 따르는 소켓 프로그래밍 IRC 서버를 만드는 프로젝트"</em></p>
+				<p class="project_simple_explain"><em>"C++98과 Linux epoll로 다중 클라이언트를 처리하는 IRC 서버"</em></p>
 					<ul>
-						<li>서버는 이미 존재하는 irssi 클라이언트 구현체와 호환되어야 합니다.</li>
-						<li>inspIRCd, TCPflow, irssi를 통해 테스트 환경을 구성하여 서버/클라이언트 간 응답을 확인하며 구현하였습니다.</li>
-						<li>C++로 구현한 첫 프로젝트로 클래스 간 책임 분산을 생각하며 구현하였습니다.</li>
+						<li>RFC 1459/2812의 일부 명령을 구현해 사용자 등록, 채널 관리, 개인·채널 메시지와 운영자 기능을 지원합니다.</li>
+						<li>fork 없이 단일 epoll 이벤트 루프로 IPv4 TCP 연결과 여러 클라이언트의 입출력을 처리합니다.</li>
+						<li>클라이언트별 수신 버퍼에서 CRLF 단위 메시지를 추출해 분할 수신과 연속 수신을 처리했습니다.</li>
+						<li>명령 디스패치와 클라이언트·채널·소켓 책임을 분리하고, irssi와 netcat으로 동작을 검증했습니다.</li>
 					</ul>
 			</article>
 
 			<!-- Project -->
 			<article class="project_card" data-category="cpp,qt,tcp,git">
 				<h2><a class="project_name" href="https://github.com/hoysong/GUI-Client-for-ft_irc">IRC GUI Client — Qt Widgets</a></h2>
-				<p class="project_simple_explain"><em>"Qt Widgets의 UI 구성과 Signal/Slot 기반 이벤트 처리를 학습하기 위해 구현한 IRC GUI 클라이언트"</em></p>
+				<p class="project_simple_explain"><em>"Qt Widgets와 QTcpSocket으로 구현한 비동기 IRC GUI 클라이언트"</em></p>
 				<img class="project_preview" src="https://raw.githubusercontent.com/hoysong/GUI-Client-for-ft_irc/main/video.gif" alt="IRC GUI Client 실행 화면" width="640" height="480" />
 					<ul>
-						<li>Qt Designer를 활용해 서버 접속 정보, 연결 상태, 송신 메시지와 수신 메시지를 확인할 수 있는 GUI를 구성했습니다.</li>
-						<li>버튼 클릭, Enter 입력, 서버 연결 및 메시지 수신 등의 동작을 Qt의 Signal/Slot 구조로 연결했습니다.</li>
-						<li>QTcpSocket을 사용해 IRC 서버와 비동기 TCP 통신을 구현하고, 연결 성공, 메시지 수신, 소켓 오류 이벤트를 처리했습니다.</li>
-						<li>연결 성공 시 PASS, NICK, USER 명령을 자동으로 전송하고, 직접 입력한 IRC 명령에는 CRLF를 추가해 전송합니다.</li>
-						<li>화면을 담당하는 MainWindow와 네트워크 통신을 담당하는 IRCGuiControlClient로 책임을 분리했습니다.</li>
+						<li>Qt Designer로 서버 접속 정보, 연결 상태, 송신 메시지와 수신 메시지를 구분해 확인하는 화면을 구성했습니다.</li>
+						<li>QTcpSocket의 connected, readyRead, errorOccurred 이벤트를 Signal/Slot으로 연결해 비동기 TCP 통신을 처리했습니다.</li>
+						<li>연결 성공 시 PASS, NICK, USER를 자동 전송하고, 입력한 IRC 명령에 CRLF를 붙여 원시 요청·응답을 확인할 수 있게 했습니다.</li>
+						<li>UI를 담당하는 MainWindow와 네트워크 통신을 담당하는 IRCGuiControlClient로 책임을 분리했습니다.</li>
 					</ul>
 			</article>
 
 			<!-- Project -->
 			<article class="project_card" data-category="c,graphics,git">
 				<h2><a class="project_name" href="https://github.com/hoysong/fdf_fil_de_fer">FdF</a></h2>
-				<p class="project_simple_explain"><em>"와이어프레임 풍경을 3D로 표현하는 프로젝트"</em></p>
+				<p class="project_simple_explain"><em>"높이 맵을 등각 투영 와이어프레임으로 시각화한 그래픽 프로젝트"</em></p>
 					<ul>
-						<li>점의 색상, 좌표, 높이가 명시된 '.fdf' 확장자 파일을 읽어 3D로 시각화합니다.</li>
-						<li>각 점을 잇는 선분은 시작점의 색을 시작으로 끝점의 색으로 그라디언트합니다.</li>
+						<li><code>.fdf</code> 파일의 좌표, 높이와 색상 정보를 읽어 3차원 점 데이터로 변환했습니다.</li>
+						<li>회전·축척 변환으로 등각 투영 좌표를 계산하고 화면 크기에 맞게 배치했습니다.</li>
+						<li>Bresenham 선 그리기와 RGB 보간으로 인접한 점을 색상 그라디언트 선분으로 연결했습니다.</li>
 					</ul>
 			</article>
 
 			<!-- Project -->
 			<article class="project_card" data-category="c,graphics,shell,git">
-				<h2><a class="project_name" href="https://github.com/hoysong/cub3d">Cub3d</a></h2>
-				<p class="project_simple_explain"><em>"울펜슈타인 스타일 레이캐스팅 엔진 구현 프로젝트"</em></p>
-				<img class="project_preview" src="https://raw.githubusercontent.com/hoysong/cub3d/main/video.gif" alt="Cub3d 레이캐스팅 엔진 실행 화면" width="640" height="480" />
+				<h2><a class="project_name" href="https://github.com/hoysong/cub3d">Cub3D</a></h2>
+				<p class="project_simple_explain"><em>"C와 MiniLibX로 2D 맵을 3D 시점으로 렌더링한 Wolfenstein 3D 스타일 프로젝트"</em></p>
+				<img class="project_preview" src="https://raw.githubusercontent.com/hoysong/cub3d/main/video.gif" alt="Cub3D 레이캐스팅 실행 화면" width="640" height="480" />
 					<ul>
-						<li>2차원 상의 맵을 3D처럼 보이게 하는 엔진 구현을 목표로 합니다.</li>
-						<li>2차원 공간에서 DDA 알고리즘을 활용하여 플레이어와 벽 간의 거리를 구하고, 이를 3D로 렌더링합니다.</li>
-						<li>페인팅 알고리즘을 활용하여 독보적인 레이캐스팅 엔진을 구현하였습니다.</li>
-						<li>맵의 유효성과 메모리 안정성을 검증하기 위해 100개가 넘는 맵 파일을 테스트하는 쉘 스크립트를 작성하였습니다.</li>
+						<li><code>.cub</code> 파일에서 방향별 벽 텍스처, 바닥·천장 RGB 값과 맵을 읽고 형식·폐쇄 여부·플레이어 수를 검증합니다.</li>
+						<li>시야각에 따라 광선을 전진시켜 벽 충돌을 찾고, 거리와 각도를 화면 좌표로 변환해 원근감과 방향별 텍스처를 표현했습니다.</li>
+						<li>키보드·마우스 이동과 회전, 플레이어 위치와 시야를 보여 주는 미니맵을 구현했습니다.</li>
+						<li>정상·비정상 맵 케이스와 쉘 스크립트·Valgrind를 이용해 파서 오류와 메모리 문제를 점검했습니다.</li>
 					</ul>
 			</article>
 
 			<!-- Project -->
 			<article class="project_card" data-category="c,git,thread">
 				<h2><a class="project_name" href="https://github.com/hoysong/philo">Philosophers</a></h2>
-				<p class="project_simple_explain"><em>"스레드, 뮤텍스를 이해하기 위한 dining philosophers problem 프로젝트"</em></p>
+				<p class="project_simple_explain"><em>"POSIX 스레드와 뮤텍스로 Dining Philosophers 문제를 구현한 동시성 프로젝트"</em></p>
 					<ul>
-						<li>스레드 생성, 뮤텍스 Lock/Unlock 등을 통해 스레드 자원 관리를 학습했습니다.</li>
-						<li>임계 영역, 데이터 레이스, 데드락 등의 문제를 직접 체감하며 멀티스레딩을 학습했습니다.</li>
+						<li>철학자별 pthread를 생성하고 포크와 공유 상태를 뮤텍스로 보호했습니다.</li>
+						<li>홀수 번호 철학자의 시작 시점을 늦춰 시작 직후의 포크 경합을 줄였습니다.</li>
+						<li>사망 조건과 실행 시간을 직접 관리하며 임계 영역, 데이터 레이스와 잠금 순서 문제를 분석했습니다.</li>
 					</ul>
 			</article>
 
 			<!-- Project -->
 			<article class="project_card" data-category="c,shell,git">
 				<h2><a class="project_name" href="https://github.com/hoysong/minishell">Minishell</a></h2>
-				<p class="project_simple_explain"><em>"제한된 기능의 Bash 구현 프로젝트"</em></p>
+				<p class="project_simple_explain"><em>"Bash의 파싱과 명령 실행 구조를 구현한 2인 팀 프로젝트"</em></p>
 				<img class="project_preview" src="https://raw.githubusercontent.com/hoysong/minishell/master/video.gif" alt="Minishell 명령어 실행 화면" width="640" height="480" />
 					<ul>
-						<li>readline()을 통해 받는 사용자 입력을 엄격하게 파싱하여 토큰 단위로 정제했습니다.</li>
-						<li>팀원이 토큰을 신뢰할 수 있도록 토큰을 출력하는 디버그 모드를 제공했습니다.</li>
-						<li>fork(), wait() 등을 활용해 자식 프로세스를 생성하고, 좀비/고아 프로세스가 발생하지 않도록 관리했습니다.</li>
-						<li>pipe()를 활용해 명령어 간 입력과 출력을 연결하는 파이프라인을 구현했습니다.</li>
+						<li>2인 팀에서 파서를 담당해 작은따옴표·큰따옴표를 고려한 토큰화와 문법 검사를 구현했습니다.</li>
+						<li>환경 변수와 직전 종료 상태를 확장하고, 파이프·리다이렉션을 명령 단위 데이터로 분리했습니다.</li>
+						<li>실행부가 파싱 결과를 일관되게 사용할 수 있도록 명령·인자·리다이렉션 인터페이스를 구성했습니다.</li>
+						<li>파싱 노드와 문법 검사 결과를 출력하는 디버그 모드와 코드 주석으로 팀원의 연동 작업을 지원했습니다.</li>
 					</ul>
 			</article>
 
 			<!-- Project -->
 			<article class="project_card" data-category="c,thread">
 				<h2><a class="project_name" href="https://github.com/hoysong/game_of_life">MT Game of Life</a></h2>
-				<p class="project_simple_explain"><em>"멀티스레딩 Game of Life를 통해 프레임 속도 변화 측정 프로젝트"</em></p>
+				<p class="project_simple_explain"><em>"Game of Life 렌더링 파이프라인을 멀티스레딩하고 처리 시간을 비교한 개인 프로젝트"</em></p>
 				<img class="project_preview" src="https://raw.githubusercontent.com/hoysong/game_of_life/main/video.gif" alt="멀티스레딩 Game of Life 실행 화면" width="640" height="480" />
 					<ul>
-						<li>Philosopher의 멀티스레딩 경험과 FdF/Cub3d의 그래픽 경험을 활용한 프로젝트입니다.</li>
-						<li>42의 MLX 라이브러리를 통해 "Conway's Game of Life" 규칙을 시각적으로 볼 수 있도록 구현했습니다.</li>
-						<li>구현 이후 렌더링 파이프라인 구간별로 멀티스레딩을 적용해 프레임 처리 속도를 측정했습니다.</li>
-						<li>120프레임 기준 멀티스레딩 적용 후 55%의 프레임 처리 속도 향상을 확인했습니다.</li>
+						<li>C와 MiniLibX로 Conway's Game of Life 규칙, 랜덤·파일 기반 초기 맵과 실시간 셀 편집을 구현했습니다.</li>
+						<li>화면을 8개 행 구간으로 나누고 배경, 격자, 셀 렌더링 단계를 pthread 작업으로 병렬화했습니다.</li>
+						<li>각 렌더링 단계 사이에 pthread_join을 적용해 단계별 작업 순서를 보장했습니다.</li>
+						<li>120프레임 처리 시간이 1,528ms에서 684ms로 줄어, 기준 구현 대비 처리 시간 55.2% 감소를 기록했습니다.</li>
 					</ul>
 			</article>
 
 			<!-- Project -->
 			<article class="project_card" data-category="shell,system">
-				<h2><a class="project_name" href="https://github.com/hoysong/born2beroot">Born2beroot</a></h2>
+				<h2><span class="project_name" title="현재 공개된 저장소가 없습니다.">Born2beroot</span></h2>
 				<p class="project_simple_explain"><em>"가상머신 내에서 각종 정책들을 준수하는 데비안 환경을 구축하는 프로젝트"</em></p>
 					<ul>
 						<li>비밀번호, 유저명, 그룹, UFW, SSH 접속 등 여러 정책을 준수하는 환경을 구축했습니다.</li>
