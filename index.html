@@ -47,6 +47,7 @@
 						<li>fork 없이 단일 epoll 이벤트 루프로 IPv4 TCP 연결과 여러 클라이언트의 입출력을 처리합니다.</li>
 						<li>클라이언트별 수신 버퍼에서 CRLF 단위 메시지를 추출해 분할 수신과 연속 수신을 처리했습니다.</li>
 						<li>명령 디스패치와 클라이언트·채널·소켓 클래스로 책임을 분리했습니다.</li>
+						<li>inspIRCd와 irssi를 이용해 서버·클라이언트 동작과 응답을 비교하며 호환성을 검증했습니다.</li>
 						<li>netcat으로 원시 IRC 명령을 테스트하고, tcpflow로 서버·클라이언트 사이의 TCP 스트림을 확인했습니다.</li>
 					</ul>
 			</article>
@@ -54,11 +55,11 @@
 			<!-- Project -->
 			<article class="project_card" data-category="cpp,qt,tcp,git">
 				<h2><a class="project_name" href="https://github.com/hoysong/GUI-Client-for-ft_irc">IRC GUI Client — Qt Widgets</a></h2>
-				<p class="project_simple_explain"><em>"Qt Widgets와 QTcpSocket으로 구현한 비동기 IRC GUI 클라이언트"</em></p>
+				<p class="project_simple_explain"><em>"Qt Widgets UI 구성과 Signal/Slot 기반 이벤트 처리를 학습하며 QTcpSocket으로 구현한 비동기 IRC GUI 클라이언트"</em></p>
 				<img class="project_preview" src="https://raw.githubusercontent.com/hoysong/GUI-Client-for-ft_irc/main/video.gif" alt="IRC GUI Client 실행 화면" width="640" height="480" />
 					<ul>
 						<li>Qt Designer로 서버 접속 정보, 연결 상태, 송신 메시지와 수신 메시지를 구분해 확인하는 화면을 구성했습니다.</li>
-						<li>QTcpSocket의 connected, readyRead, errorOccurred 이벤트를 Signal/Slot으로 연결해 비동기 TCP 통신을 처리했습니다.</li>
+						<li>연결 버튼 클릭, Enter 입력과 QTcpSocket의 connected, readyRead, errorOccurred 이벤트를 Signal/Slot으로 연결해 비동기 TCP 통신을 처리했습니다.</li>
 						<li>연결 성공 시 PASS, NICK, USER를 자동 전송하고, 입력한 IRC 명령에 CRLF를 붙여 원시 요청·응답을 확인할 수 있게 했습니다.</li>
 						<li>UI를 담당하는 MainWindow와 네트워크 통신을 담당하는 IRCGuiControlClient로 책임을 분리했습니다.</li>
 					</ul>
@@ -82,10 +83,10 @@
 				<img class="project_preview" src="https://raw.githubusercontent.com/hoysong/cub3d/main/video.gif" alt="Cub3D 레이캐스팅 실행 화면" width="640" height="480" />
 					<ul>
 						<li><code>.cub</code> 파일에서 방향별 벽 텍스처, 바닥·천장 RGB 값과 맵을 읽고 형식·폐쇄 여부·플레이어 수를 검증합니다.</li>
-						<li>시야각에 따라 광선을 전진시켜 벽 충돌을 찾고, 거리와 각도를 화면 좌표로 변환해 원근감과 방향별 텍스처를 표현했습니다.</li>
+						<li>시야각에 따라 DDA 알고리즘으로 광선을 전진시켜 벽 충돌을 찾고, 거리와 각도를 화면 좌표로 변환해 원근감과 방향별 텍스처를 표현했습니다.</li>
 						<li>화면 열마다 가장 가까운 벽을 즉시 그리는 일반적인 Cub3D 구현과 달리, 벽 구간을 깊이순으로 정렬해 먼 벽부터 그리는 화가 알고리즘을 적용했습니다.</li>
 						<li>키보드·마우스 이동과 회전, 플레이어 위치와 시야를 보여 주는 미니맵을 구현했습니다.</li>
-						<li>정상·비정상 맵 케이스와 쉘 스크립트·Valgrind를 이용해 파서 오류와 메모리 문제를 점검했습니다.</li>
+						<li>정상·비정상 <code>.cub</code> 맵 190개를 쉘 스크립트로 실행하고 Valgrind를 함께 사용해 파서 오류와 메모리 문제를 점검했습니다.</li>
 					</ul>
 			</article>
 
@@ -96,7 +97,7 @@
 					<ul>
 						<li>철학자별 pthread를 생성하고 포크와 공유 상태를 뮤텍스로 보호했습니다.</li>
 						<li>홀수 번호 철학자의 시작 시점을 늦춰 시작 직후의 포크 경합을 줄였습니다.</li>
-						<li>사망 조건과 실행 시간을 직접 관리하며 임계 영역, 데이터 레이스와 잠금 순서 문제를 분석했습니다.</li>
+						<li>사망 조건과 실행 시간을 직접 관리하며 임계 영역, 데이터 레이스와 데드락을 분석했습니다.</li>
 					</ul>
 			</article>
 
@@ -121,6 +122,7 @@
 				<p class="project_simple_explain"><em>"Game of Life 렌더링 파이프라인을 멀티스레딩하고 처리 시간을 비교한 개인 프로젝트"</em></p>
 				<img class="project_preview" src="https://raw.githubusercontent.com/hoysong/game_of_life/main/video.gif" alt="멀티스레딩 Game of Life 실행 화면" width="640" height="480" />
 					<ul>
+						<li>Philosophers에서 익힌 멀티스레딩과 FdF·Cub3D에서 익힌 그래픽 구현 경험을 결합한 개인 프로젝트입니다.</li>
 						<li>C와 MiniLibX로 Conway's Game of Life 규칙, 랜덤·파일 기반 초기 맵과 실시간 셀 편집을 구현했습니다.</li>
 						<li>화면을 8개 행 구간으로 나누고 배경, 격자, 셀 렌더링 단계를 pthread 작업으로 병렬화했습니다.</li>
 						<li>각 스레드가 겹치지 않는 이미지 청크를 담당하게 해 렌더링 구간의 뮤텍스 없이 작업하고, 단계 사이에는 <code>pthread_join()</code>으로 실행 순서를 보장했습니다.</li>
