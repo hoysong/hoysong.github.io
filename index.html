@@ -2,14 +2,15 @@
 <html lang="ko-KR">
 	<head>
 		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Portfolio</title>
 		<link rel="stylesheet" href="styles.css" />
 	</head>
 	<body>
 		<div class="intro_text">HOYSONG PORTFOLIO</div>
-		<article>
+		<main class="portfolio">
 			<h1>My Projects</h1>
-			<nav>
+			<nav aria-label="프로젝트 카테고리">
 				<strong>Selected category:</strong>
 				<button class="category_button" data-category="all">All</button>
 				<button class="category_button" data-category="c">C</button>
@@ -133,7 +134,7 @@
 					</ul>
 			</article>
 
-		</article>
+		</main>
 		<script src="category.js"></script>
 	</body>
 </html>
